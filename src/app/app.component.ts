@@ -69,4 +69,20 @@ async  loadEmployees() {
       }
     );
   }
+  updateEmployee(obj :Employee){
+    const employee:any = {
+      name: this.employeeForm.get('employeeName').value,
+      salary: parseInt(this.employeeForm.get('employeeSalary').value,10),
+      age: parseInt(this.employeeForm.get('employeeAge').value,10)
+    }
+    let empId = obj.id;
+    console.log('deleted sucessfull')
+    this.employeeService.updateEmployeeById(employee,empId).subscribe(
+      data =>{
+        if(data.status == "success"){
+          console.log('update sucessfull')
+        }
+      }
+    );
+  }
 }
