@@ -1,0 +1,51 @@
+<div [formGroup]="employeeForm">
+  <div>
+    <label for="name">Name: </label> &nbsp;
+    <input type="text" id="name" formControlName="employeeName"><br><br>
+  </div>
+  <div>
+    <label for="salary">Salary: </label>&nbsp;
+    <input type="text" id="salary" formControlName="employeeSalary"><br><br>
+  </div>
+  <div>
+    <label for="age" >Age: </label>&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text" id="age" formControlName="employeeAge"><br><br>
+  </div>
+  <div>
+    <button type="submit" (click)="createEmployee()" class="btn btn-primary">Add</button>
+  </div>
+</div>
+<br>
+<br>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="employee_name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.employee_name}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="employee_age">
+      <th mat-header-cell *matHeaderCellDef> Age </th>
+      <td mat-cell *matCellDef="let element"> {{element.employee_age}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="employee_salary">
+      <th mat-header-cell *matHeaderCellDef> Salary </th>
+      <td mat-cell *matCellDef="let element"> {{element.employee_salary}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element"> <button type="button" (click)="deleteEmployee(element)" class="btn btn-primary">delete</button> </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator  [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
